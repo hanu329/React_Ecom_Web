@@ -1,0 +1,60 @@
+
+*{
+    font-family: 'Roboto', sans-serif;
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+}
+
+.registerDiv{
+    border:1px solid grey;
+    width:25%;
+    height:55vh;
+    margin:auto;
+    border-radius: 5px;
+   
+}
+.register_form{
+    text-align: center;
+ }
+ .register_form>input{
+      width:75%;
+      height: 30px;
+      border-radius: 5px;
+      border: 1px solid grey;
+ }
+ .register_form>[type="submit"]{
+    width:76%;
+    height: 30px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgb(252,210,0);
+    color:black;
+    border: none;
+}
+.register_form>div{
+   
+    font-size: 11px;
+    margin: 30px 55px;
+    line-height: 1.5;
+    word-spacing: 2;
+}
+.register_form>a{
+    font-size: 11px;
+    text-decoration: none;
+}
+.h1Register{
+    margin-bottom: 15px;
+    margin-left: 5px;
+}
+.h5Register{
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+.hrRegister{
+  
+    font-size:1px;
+    width:50%;
+    margin:auto;
+    margin-top: 20px;
+}

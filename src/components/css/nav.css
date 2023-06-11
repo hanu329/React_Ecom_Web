@@ -1,0 +1,38 @@
+*{
+    font-family: 'Roboto', sans-serif;
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+}
+.navDiv{
+    /* border:2px solid teal; */
+    height: 15vh;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(168, 168, 147);
+   
+}
+.navDiv>div{
+    padding-top:25px;
+    font-weight: bold;
+}
+.navDiv>div:first-child{
+    margin-left:20px;
+}
+.navDiv>div:nth-child(2)>input{
+    width:40vw;
+    height:30px;
+    border:1px solid grey;
+    border-radius:10px;
+}
+.navDiv>div:last-child{
+    margin-right:20px;
+}
+.searchIcon{
+    margin-left:15px;
+    font-size:20px;
+}
+.rate{
+    position: relative;
+    left:90px;
+}
