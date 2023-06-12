@@ -4,16 +4,19 @@ import { productDetails } from '../reduxtk/slices/productSlice'
 import { Link } from 'react-router-dom'
 import { filterProduct,getProduct,addCart } from '../reduxtk/slices/productSlice'
 import './css/product.css'
+import { faS, faStar} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 export const Product =()=>{
 
     let prod=useSelector((state)=>state.product.prod)
+    let cart=useSelector((state)=>state.product.cart)
     let filterProd=useSelector((state)=>state.product.filteredProd)
 
     const dispatch=useDispatch();
 
-
+console.log(cart)
   const productDetail =(item)=>{
     dispatch(productDetails(item))
   }
@@ -93,13 +96,21 @@ const handlefilter =()=>{
      <img src={el.image} alt="" height='100px' width='100px' />
      <div className='priceTitle'>
      <div className='title'>{el.title}</div> 
-       <span >price: {el.price} $</span> <span className='rate'>{el.rating.rate} *</span>
+       <span >price: {el.price} $</span> <span className='rate'>{el.rating.rate} <FontAwesomeIcon icon={faStar} /></span>
 
      </div>
       
        </div>
         </Link> 
-        <div>  <button onClick={()=>addToCart(el.id)} className='priceBtn'>add to Cart</button></div>
+        {cart[el.id]>0? <div> 
+         
+         <button onClick={()=>addToCart(el.id)} className='priceBtn'>add to Cart({cart[el.id]})</button>
+         
+         </div>: <div> 
+         
+         <button onClick={()=>addToCart(el.id)} className='priceBtn'>add to Cart</button>
+         
+         </div>}      
      </div>
     ))}
     </div>:
@@ -111,12 +122,20 @@ const handlefilter =()=>{
      <img src={el.image} alt="" height='100px' width='100px' className='prodImg' />
      <div className='priceTitle'>
      <div className='title'>{el.title}</div> 
-       <span >price: {el.price} $</span> <span className='rate'>{el.rating.rate} *</span>
+       <span >price: {el.price} $</span> <span className='rate'>{el.rating.rate} <FontAwesomeIcon icon={faStar} /></span>
      </div>
       
        </div>
         </Link> 
-        <div>  <button onClick={()=>addToCart(el.id)} className='priceBtn'>add to Cart</button></div>
+        {cart[el.id]>0? <div> 
+         
+         <button onClick={()=>addToCart(el.id)} className='priceBtn'>add to Cart({cart[el.id]})</button>
+         
+         </div>: <div> 
+         
+         <button onClick={()=>addToCart(el.id)} className='priceBtn'>add to Cart</button>
+         
+         </div>}      
      </div>
     ))}</div>}
       

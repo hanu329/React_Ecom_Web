@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import {fetchProduct} from './reduxtk/slices/productSlice'
-import { fetchUser } from './reduxtk/slices/userSlice'
+//import { fetchUser } from './reduxtk/slices/userSlice'
 import {Routes, Route, Link} from 'react-router-dom'
 import {Nav} from './components/Nav' 
 import { Product } from './components/Product'

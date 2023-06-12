@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { removeCart } from "../reduxtk/slices/productSlice"
 import { useNavigate, Navigate } from "react-router-dom"
 import 'font-awesome/css/font-awesome.min.css';
+import './css/cart.css'
 
 export const Cart =()=>{
     const cart=useSelector((state)=>state.product.cart)
@@ -28,24 +29,28 @@ export const Cart =()=>{
         for(let i in cart){
          if(cart[i]>0 && el.id==i){
           totalPrice+=el.price;
-          totalItem+=car[i]
-             return <div key={el.id}>
+          totalItem+=cart[i]
+             return <div key={el.id} className="cartInnerDiv">
                 <div><img src={el.image} alt="" height='100px' width='100px' /></div>
-              <div>{el.title}</div>  
+                <div>
+                <div>{el.title}</div>  
               <div>price: {el.price} $</div> 
-              <button onClick={()=>removefromCart(el.id)}>remove <i className="fa-duotone fa-trash"></i></button>
+              <div>Qty: {cart[el.id]} </div> 
+              <button onClick={()=>removefromCart(el.id)}>remove</button>
+
+                </div>
+             
                 </div>
          }
         }
     })
     
-    return <div>
+    return <div className="cartDiv">
 {sts==false?<div><Navigate to={'/'} /></div> :<div>
 Total Price: {totalPrice.toFixed(0)} $ <br />
-Total Items: {totalItem} <br /> <br />
-  {cartitem}</div> }
 
-{console.log(sts)}
+   <div className="cartParentDiv"> <div className="cartCard">{cartitem}</div>  <div className="advert">sfds</div> </div>  </div> }
+
 
     </div>
 }

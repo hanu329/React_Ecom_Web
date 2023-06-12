@@ -1,0 +1,37 @@
+
+
+
+*{
+    font-family: 'Roboto', sans-serif;
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+}
+
+/* .cartDiv{
+    border:2px solid teal;
+} */
+
+.cartParentDiv{
+    border:2px solid red;
+    display: flex;
+}
+.cartCard{
+    width:80%;
+    border:2px solid brown;
+}
+.cartInnerDiv{
+    border:2px solid yellow; 
+    margin:20px;
+    padding:30px;
+    display: flex;
+   
+}
+.cartInnerDiv>div{
+    margin-right:20px;
+}
+.advert{
+    border:2px solid blue;
+    width:18%;
+    margin-left:2%;
+}
