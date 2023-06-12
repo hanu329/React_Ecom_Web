@@ -4,7 +4,7 @@ import { productDetails } from '../reduxtk/slices/productSlice'
 import { Link } from 'react-router-dom'
 import { filterProduct,getProduct,addCart } from '../reduxtk/slices/productSlice'
 import './css/product.css'
-import { faS, faStar} from '@fortawesome/free-solid-svg-icons'
+import { faStar} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
@@ -16,7 +16,7 @@ export const Product =()=>{
 
     const dispatch=useDispatch();
 
-console.log(cart)
+
   const productDetail =(item)=>{
     dispatch(productDetails(item))
   }
