@@ -2,9 +2,9 @@ import {useDispatch,useSelector} from 'react-redux'
 
 import { productDetails } from '../reduxtk/slices/productSlice'
 import { Link } from 'react-router-dom'
-import { filterProduct,getProduct,addCart } from '../reduxtk/slices/productSlice'
+import { filterProduct,getProduct,addCart, removeCart } from '../reduxtk/slices/productSlice'
 import './css/product.css'
-import { faStar} from '@fortawesome/free-solid-svg-icons'
+import { faStar, faTrash} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
@@ -22,6 +22,10 @@ export const Product =()=>{
   }
   const addToCart =(i)=>{  
     dispatch(addCart(i))
+  }
+
+  const removefromCart =(i)=>{
+    dispatch(removeCart(i))
   }
  
   
@@ -77,8 +81,8 @@ const handlefilter =()=>{
       <div>
       <select name="sort" id="sort" onChange={()=>handleSort()} defaultValue={'default'}>
         <option value={'default'} disabled >sort</option>
-        <option value="lth">lth</option>
-        <option value="htl">htl</option>
+        <option value="lth">price: low to high</option>
+        <option value="htl">Price: high to low</option>
       </select>
       <select name="filter" id="filter" onChange={()=>handlefilter()} defaultValue={'default'}>
         <option value={'default'} disabled>filter</option>
@@ -105,7 +109,7 @@ const handlefilter =()=>{
         {cart[el.id]>0? <div> 
          
          <button onClick={()=>addToCart(el.id)} className='priceBtn'>add to Cart({cart[el.id]})</button>
-         
+         <button onClick={()=>removefromCart(el.id)} className="cartRemoveBtn"><FontAwesomeIcon icon={faTrash} /></button>
          </div>: <div> 
          
          <button onClick={()=>addToCart(el.id)} className='priceBtn'>add to Cart</button>
@@ -130,6 +134,7 @@ const handlefilter =()=>{
         {cart[el.id]>0? <div> 
          
          <button onClick={()=>addToCart(el.id)} className='priceBtn'>add to Cart({cart[el.id]})</button>
+         <button onClick={()=>removefromCart(el.id)} className="cartRemoveBtn"><FontAwesomeIcon icon={faTrash} /></button>
          
          </div>: <div> 
          
