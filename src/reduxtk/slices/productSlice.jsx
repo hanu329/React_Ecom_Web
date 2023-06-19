@@ -24,9 +24,9 @@ const productSlice= createSlice({
             state.filteredProd=action.payload
         },     
 
-        addCart(state, action){
+        addCart(state, action){         
           state.cart={...state.cart,[action.payload]:state.cart[action.payload]+1};
-          localStorage.setItem("cart", JSON.stringify(state.cart))
+         localStorage.setItem("cart", JSON.stringify(state.cart))
         },
         removeCart(state, action){
             state.cart={...state.cart,[action.payload]:state.cart[action.payload]-1};

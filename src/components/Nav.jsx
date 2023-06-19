@@ -13,10 +13,12 @@ export const Nav=()=>{
  let status;
  let sts=useSelector((state)=>state.user.status)
  let cart=useSelector((state)=>state.product.cart)
+ let user=useSelector((state)=>state.user.userDetail)
 
    //status=JSON.parse(localStorage.getItem('status'))
 
   const logOut =()=>{
+      console.log(233)
        dispatch(userStatus(false))
   }
   let c=0;
@@ -48,7 +50,27 @@ export const Nav=()=>{
         </Link>
         {sts?"":<span> <Link to='/register'  style={{margin:"10px",textDecoration:"none"}}>Register</Link>
         <Link to='/login' style={{margin:"10px",textDecoration:"none"}} >Log in</Link></span>}
-       {sts?<span> <Link to='/'  style={{margin:"10px",textDecoration:"none"}} onClick={()=>logOut()}>Log out</Link></span>:""}
+  
+  
+  {sts?<span>
+          <Link to='/'  style={{margin:"10px",textDecoration:"none"}} onClick={()=>logOut()}>Log out</Link>
+          {/* <select name="" id="" onChange={location=this.value}>
+            <option value="">{user.username}</option>
+            <option value="">
+              Profile
+            </option>
+            <option value="/">
+              <span onClick={()=>logOut()}>log out</span>
+              </option>  */}
+            {/* <Link to='/'  style={{margin:"10px",textDecoration:"none"}} onClick={()=>logOut()}>
+         
+            Log out </Link>*/}
+          {/* </select> */}
+
+
+    
+     
+     </span>:""}
        
         
        </div>

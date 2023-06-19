@@ -14,6 +14,7 @@ export const Product =()=>{
     let cart=useSelector((state)=>state.product.cart)
     let filterProd=useSelector((state)=>state.product.filteredProd)
 
+    
     const dispatch=useDispatch();
 
 
@@ -75,10 +76,26 @@ const handlefilter =()=>{
     
   dispatch(filterProduct(ans))  
    }
+let adimg=['https://st2.depositphotos.com/2219414/9517/v/600/depositphotos_95177406-stock-illustration-banner-advertising-for-marketing.jpg',
+'https://www.shutterstock.com/image-vector/3d-vector-conceptual-illustration-mobile-260nw-1828126133.jpg',
+'https://neilpatel.com/wp-content/uploads/2021/02/ExamplesofSuccessfulBannerAdvertising-700x420.jpg']
 
+let i=1;
+
+setInterval(()=>{
+  //console.log(i)
+  document.querySelector('#adImg').src=adimg[i]
+  if(i==2){
+    i=-1
+  } 
+i++
+},3000)
+  //  
+  //  
+  //  
 
     return <div className='prodDiv'>
-      <div>
+      <div className='selectDiv'>
       <select name="sort" id="sort" onChange={()=>handleSort()} defaultValue={'default'}>
         <option value={'default'} disabled >sort</option>
         <option value="lth">price: low to high</option>
@@ -90,7 +107,9 @@ const handlefilter =()=>{
         <option value="three">three and above</option>
         <option value="all">all</option>
       </select> 
-
+          <div className="ads">
+            <img src='https://st2.depositphotos.com/2219414/9517/v/600/depositphotos_95177406-stock-illustration-banner-advertising-for-marketing.jpg' id='adImg' alt="" height='100%' width='100%' />
+          </div>
       </div>
     {filterProd.length>0?<div className='filterDiv'>
       {filterProd.map((el)=>(
@@ -146,3 +165,6 @@ const handlefilter =()=>{
       
     </div>
 }
+
+
+

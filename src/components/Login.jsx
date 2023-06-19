@@ -3,7 +3,7 @@ import { useState , } from "react"
 import { useNavigate } from "react-router-dom"
 import axios from 'axios'
 import { useDispatch } from "react-redux"
-import { userStatus } from "../reduxtk/slices/userSlice"
+import { userStatus ,userDetails} from "../reduxtk/slices/userSlice"
 import { useSelector } from "react-redux"
 import './css/login.css'
 
@@ -30,7 +30,8 @@ console.log(usr)
             if(usr[i].username==formData.username && usr[i].email==formData.email){
                 console.log('loggedin')
                 f=1;       
-                dispatch(userStatus(true))      
+                dispatch(userStatus(true))  
+                dispatch(userDetails(formData))     
                 navigate('/')
             }
            }
