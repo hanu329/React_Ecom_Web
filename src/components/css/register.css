@@ -22,7 +22,19 @@
       height: 30px;
       border-radius: 5px;
       border: 1px solid grey;
+      padding:10px;
  }
+ #eye{
+    position: relative;
+    left:100px;
+    bottom:25px;
+}
+#eye2{
+    position: relative;
+    left:100px;
+    bottom:25px;
+    display: none;
+}
  .register_form>[type="submit"]{
     width:76%;
     height: 30px;

@@ -10,6 +10,7 @@ import { ProductDetails } from './components/ProductDetails'
 import { Cart } from './components/Cart'
 import { Login } from './components/Login'
 import { Register } from './components/Register'
+import { UserProfile } from './components/UserProfile'
 function App() {
 
 const dispatch=useDispatch()
@@ -36,6 +37,7 @@ dispatch(fetchProduct())
     <Route path='/register' element={<Register />}></Route>
     <Route path='/product/cart' element={<Cart />}></Route>
     <Route path='/productDetails' element={<ProductDetails />}></Route>
+    <Route path='/userprofile' element={<UserProfile />}></Route>
     </Routes>
   <Footer />
    

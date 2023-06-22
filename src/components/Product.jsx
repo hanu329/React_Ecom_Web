@@ -82,14 +82,14 @@ let adimg=['https://st2.depositphotos.com/2219414/9517/v/600/depositphotos_95177
 
 let i=1;
 
-setInterval(()=>{
-  //console.log(i)
-  document.querySelector('#adImg').src=adimg[i]
-  if(i==2){
-    i=-1
-  } 
-i++
-},3000)
+// setInterval(()=>{
+//   console.log(i)
+//   document.querySelector('#adImg').src=adimg[i]
+//   if(i==2){
+//     i=-1
+//   } 
+// i++
+// },5000)
   //  
   //  
   //  

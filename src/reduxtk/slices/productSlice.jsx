@@ -60,9 +60,6 @@ export default productSlice.reducer
       
 // })
 
-// useEffect(()=>{
-//     localStorage.setItem("cart", JSON.stringify(cart))
-// },[state.cart])
 export const fetchProduct =()=>{
     return async (dispatch, getState)=>{   
             const res=await fetch('https://fakestoreapi.com/products')

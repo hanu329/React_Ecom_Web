@@ -15,12 +15,26 @@ export const Nav=()=>{
  let cart=useSelector((state)=>state.product.cart)
  let user=useSelector((state)=>state.user.userDetail)
 
-   //status=JSON.parse(localStorage.getItem('status'))
-
+  
+console.log(user)
   const logOut =()=>{
       console.log(233)
        dispatch(userStatus(false))
   }
+
+const handleChange=()=>{
+   let el=document.querySelector('select')
+   console.log(el.value)
+   if(el.value=='logout'){
+    logOut()
+
+   }else if(el.value=='prof'){
+    console.log(4444444)
+    navigate('/userprofile')
+   }
+  
+}
+
   let c=0;
   for(let i in cart){
     if(cart[i]>0){
@@ -53,23 +67,19 @@ export const Nav=()=>{
   
   
   {sts?<span>
-          <Link to='/'  style={{margin:"10px",textDecoration:"none"}} onClick={()=>logOut()}>Log out</Link>
-          {/* <select name="" id="" onChange={location=this.value}>
-            <option value="">{user.username}</option>
-            <option value="">
+          {/* <Link to='/'  style={{margin:"10px",textDecoration:"none"}} onClick={()=>logOut()}>Log out</Link> */}
+          <select name="" id="" onChange={handleChange}  style={{margin:"10px",border:'none', outline:'none'}} className="selectNav">
+            <option value="" >{user.username}</option>
+            <option value="prof">
               Profile
             </option>
-            <option value="/">
-              <span onClick={()=>logOut()}>log out</span>
-              </option>  */}
+            <option value="logout">log out
+              {/* <span onClick={()=>logOut()}>log out</span> */}
+              </option> 
             {/* <Link to='/'  style={{margin:"10px",textDecoration:"none"}} onClick={()=>logOut()}>
          
-            Log out </Link>*/}
-          {/* </select> */}
-
-
-    
-     
+            Log out </Link> */}
+          </select>
      </span>:""}
        
         

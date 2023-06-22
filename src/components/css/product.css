@@ -5,7 +5,7 @@
   padding:0px;
   box-sizing: border-box;
 }
-select{
+#sort,#filter{
   border-radius: 5px;
   width:50px;
   color:green;

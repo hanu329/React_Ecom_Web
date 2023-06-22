@@ -22,7 +22,20 @@
      width:75%;
      height: 30px;
      border-radius: 5px;
+     padding: 10px;
      border: 1px solid grey;
+}
+
+#eye{
+    position: relative;
+    left:100px;
+    bottom:25px;
+}
+#eye2{
+    position: relative;
+    left:100px;
+    bottom:25px;
+    display: none;
 }
 .login_form>[type="submit"]{
     width:76%;
