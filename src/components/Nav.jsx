@@ -51,7 +51,7 @@ export const Nav=()=>{
    setInputText('') 
    navigate('/productDetails')
   }
- 
+ //new comment to check in new branch
 console.log(title)
   let elem=title.map((el)=>{{
     return <div key={el.id} onClick={()=>handleNavClick(el.id)}>{el.title}</div>
