@@ -12,16 +12,18 @@ export const Product =()=>{
 
     let prod=useSelector((state)=>state.product.prod)
     let cart=useSelector((state)=>state.product.cart)
+    let usr=useSelector((state)=>state.user.userDetail)
     let filterProd=useSelector((state)=>state.product.filteredProd)
 
     
     const dispatch=useDispatch();
 
-
+console.log("")
   const productDetail =(item)=>{
     dispatch(productDetails(item))
   }
-  const addToCart =(i)=>{  
+  const addToCart =(i)=>{ 
+    // console.log(usr.id) 
     dispatch(addCart(i))
   }
 
@@ -34,6 +36,19 @@ export const Product =()=>{
    let value=document.querySelector('#sort').value;
     if(filterProd.length>0){
       if(value=='lth'){
+        filterProd= filterProd.slice().sort((a,b)=>{
+           return a.price-b.price
+         })
+        }else {
+          filterProd= filterProd.slice().sort((a,b)=>{
+           return b.price-a.price
+         })
+        }
+          
+        dispatch(filterProduct(filterProd))
+    }
+    else{
+      if(value=='lth'){
         prod= prod.slice().sort((a,b)=>{
            return a.price-b.price
          })
@@ -43,19 +58,9 @@ export const Product =()=>{
          })
         }
           
-        dispatch(filterProduct(prod))
+        dispatch(getProduct(prod))
     }
-   if(value=='lth'){
-   prod= prod.slice().sort((a,b)=>{
-      return a.price-b.price
-    })
-   }else {
-    prod= prod.slice().sort((a,b)=>{
-      return b.price-a.price
-    })
-   }
-     
-   dispatch(getProduct(prod))
+  
     
   }
 
@@ -90,11 +95,12 @@ let i=1;
 //   } 
 // i++
 // },5000)
-  //  
-  //  
-  //  
+    
 
     return <div className='prodDiv'>
+    
+     
+    
       <div className='selectDiv'>
       <select name="sort" id="sort" onChange={()=>handleSort()} defaultValue={'default'}>
         <option value={'default'} disabled >sort</option>
@@ -108,7 +114,7 @@ let i=1;
         <option value="all">all</option>
       </select> 
           <div className="ads">
-            <img src='https://st2.depositphotos.com/2219414/9517/v/600/depositphotos_95177406-stock-illustration-banner-advertising-for-marketing.jpg' id='adImg' alt="" height='100%' width='100%' />
+            <img src='https://st2.depositphotos.com/2219414/9517/v/600/depositphotos_95177406-stock-illustration-banner-advertising-for-marketing.jpg' id='adImg' alt="" height='60%' width='100%' />
           </div>
       </div>
     {filterProd.length>0?<div className='filterDiv'>

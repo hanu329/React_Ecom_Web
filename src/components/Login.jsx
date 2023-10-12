@@ -1,5 +1,5 @@
 
-import { useState , } from "react"
+import { useState , useEffect} from "react"
 import { useNavigate } from "react-router-dom"
 import axios from 'axios'
 import { useDispatch } from "react-redux"
@@ -15,7 +15,7 @@ export const Login=()=>{
 const navigate= useNavigate()
 const dispatch= useDispatch()
 const usr=useSelector((state)=>state.user)
-console.log(usr)
+
     const handleChange=(e)=>{
        // console.log(e.target.value)
         setFormData({...formData, [e.target.name]:e.target.value})
@@ -25,16 +25,23 @@ console.log(usr)
     const handleSubmit = async (e)=>{
         e.preventDefault()
        let f=0;
+    
+    //    /api/User/GU
          let res=await axios.get('http://localhost:3000/user')
-           
-           let usr=res.data
+         console.log(res)
+           //let usr=JSON.parse(res.data)
+           let usr = res.data;
+           console.log(usr)
+           console.log(formData)
            for(let i=0; i<usr.length; i++){
+            
             if(usr[i].password==formData.password && usr[i].email==formData.email){
                 console.log('loggedin')
                 f=1;       
                 dispatch(userStatus(true))  
                 dispatch(userDetails(usr[i]))     
                 navigate('/')
+                break;
             }
            }
            if(f!=1){

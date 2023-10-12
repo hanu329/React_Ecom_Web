@@ -1,6 +1,10 @@
 import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
-import {useEffect} from 'react'
+import {useEffect} from 'react';
+// import { useSelector } from "react-redux";
 
+
+// let usr= useSelector((state)=>state.user)
+// console.log(usr)
 let c={}
 for(let i=1; i<=20; i++){
    c[i]=0;
@@ -24,8 +28,10 @@ const productSlice= createSlice({
             state.filteredProd=action.payload
         },     
 
-        addCart(state, action){         
+        addCart(state, action){  
+          //  console.log(action.payload)       
           state.cart={...state.cart,[action.payload]:state.cart[action.payload]+1};
+      
          localStorage.setItem("cart", JSON.stringify(state.cart))
         },
         removeCart(state, action){
@@ -62,7 +68,13 @@ export default productSlice.reducer
 
 export const fetchProduct =()=>{
     return async (dispatch, getState)=>{   
-            const res=await fetch('https://fakestoreapi.com/products')
+         const res = await fetch('https://fakestoreapi.com/products',
+               {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json',
+                  // Add any necessary authentication headers here
+                }})
               const ans =await res.json()            
               dispatch(getProduct(ans)) 
          
