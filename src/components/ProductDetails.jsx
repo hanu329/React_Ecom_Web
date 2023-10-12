@@ -12,16 +12,17 @@ export const ProductDetails =()=>{
     const addToCart =(i)=>{  
         dispatch(addCart(i))
       }
+      
       console.log(prod)
-    return <div className="mainprodDetail">
+    return <div className="mainprodDetail">     
       <div className="advt"></div>
 <div className="prodDetail"> 
      
       <div className="imgDiv"><img src={prod.image} alt="" height='100px' width='100px' /></div>
       <div className="titleDiv">
       <div className="ttl">{prod.title}</div>
-       <div className="priceRate"><span>price: {prod.price} $</span><span>rating: {prod.rating.rate} <FontAwesomeIcon icon={faStar} /> </span></div>
-      
+       {/* <div className="priceRate"><span>price: {prod.price} $</span><span>rating: {prod.rating.rate} <FontAwesomeIcon icon={faStar} /> </span></div>
+       */}
        <div className="cat">category: {prod.category}</div>
       
        <div className="des">{prod.description}</div>

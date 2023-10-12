@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import {fetchProduct} from './reduxtk/slices/productSlice'
 import { fetchUser } from './reduxtk/slices/userSlice'
@@ -8,14 +8,28 @@ import {Footer} from './components/Footer'
 import { Product } from './components/Product'
 import { ProductDetails } from './components/ProductDetails'
 import { Cart } from './components/Cart'
+import { Hoc } from './components/Hoc1'
 import { Login } from './components/Login'
 import { Register } from './components/Register'
 import { UserProfile } from './components/UserProfile'
-function App() {
 
+import axios from 'axios'
+
+function App() {
+const [dataChange, setDataChange] = useState(false)
 const dispatch=useDispatch()
 
+
+const fetchData =async ()=>{
+  let data = await axios.get("/api/User/GU")
+  let res = await JSON.parse(data.data)
+ // setDataChange(dataChange?false:true)
+  console.log(res)
+ 
+}
+
 useEffect(()=>{
+//fetchData();
 //    const fetchProduct =async ()=>{
 //     const res=await fetch('https://fakestoreapi.com/products')
 //       const ans =await res.json()
@@ -25,7 +39,7 @@ useEffect(()=>{
 //dispatch(fetchUser())
 
 dispatch(fetchProduct())
-},[])
+},[dataChange])
 
 //console.log(prod.productDetails)
   return (
@@ -38,6 +52,7 @@ dispatch(fetchProduct())
     <Route path='/product/cart' element={<Cart />}></Route>
     <Route path='/productDetails' element={<ProductDetails />}></Route>
     <Route path='/userprofile' element={<UserProfile />}></Route>
+
     </Routes>
   <Footer />
    

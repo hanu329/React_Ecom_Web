@@ -1,5 +1,5 @@
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import axios from 'axios'
 import { useDispatch } from "react-redux"
 import { addUser } from "../reduxtk/slices/userSlice"
@@ -11,41 +11,52 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export const Register=()=>{
     const [formData, setFormData] = useState({username:"", email:"", password:''})
- 
+    const [dataChange, setDataChange] = useState(true)
+    const navigate=useNavigate()
+
 const dispatch= useDispatch()
 const usr=useSelector((state)=>state.user)
-    const handleChange=(e)=>{
-       // console.log(e.target.value)
-        setFormData({...formData, [e.target.name]:e.target.value})
-      
+
+    const handleChange=(e)=>{    
+        setFormData({...formData, [e.target.name]:e.target.value})   
     }
-    const navigate=useNavigate()
+   
+
     const handleSubmit =(e)=>{
-        e.preventDefault()
-      // console.log('asdf')
-       dispatch(addUser(formData))
-           axios.post('http://localhost:3000/user',formData).then((res)=>{
-            //console.log(res)
-            setFormData({username:"", email:"",  password:''})
-           
-            alert('success!')
-                    navigate('/login')
-           })
+        e.preventDefault()  
+      // dispatch(addUser(formData))
+ fetch('/api/User/Create', 
+               {
+                method: 'POST',
+                body:JSON.stringify(formData),
+                headers: {
+                  'Content-Type': 'application/json',
+                }}).then(res=>{})     
+            setDataChange(dataChange?false:true) 
     }
+console.log("dsfd")
+   
+    const fetchData =async ()=>{
+        let data = await axios.get("/api/User/GU")
+        let res = await JSON.parse(data.data)
+       console.log(res)      
+      }
+      
+      useEffect(()=>{
+        console.log(dataChange)
+      fetchData();     
+      },[dataChange])
 
     const handleEye =(v)=>{
-        if(v==1){
-          
+        if(v==1){       
             document.register.password.type='text'
             document.getElementById('eye').style.display='none'
         document.getElementById('eye2').style.display='inline-block'
         }
-        else{
-            
+        else{           
             document.register.password.type='password'
                 document.getElementById('eye').style.display='inline-block'
-            document.getElementById('eye2').style.display='none'
-            
+            document.getElementById('eye2').style.display='none'    
         }
 
     }
@@ -55,7 +66,7 @@ const usr=useSelector((state)=>state.user)
  <div className="registerDiv">
  <h1 className='h1Register'>Register</h1>
         <h5 className="h5Register">enter name and email</h5>
-        <form action="" name="register" className="register_form" onSubmit={()=>handleSubmit(event)} >
+        <form action="" name="register" className="register_form" onSubmit={(event)=>handleSubmit(event)} >
         <input type="text" name="username" value={formData.username} onChange={handleChange} placeholder="username"/><br /><br />
         <input type="email" name="email" value={formData.email} onChange={handleChange}  placeholder="email"/><br /><br />
         <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="password"/><br />

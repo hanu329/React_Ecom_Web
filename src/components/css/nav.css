@@ -49,8 +49,12 @@
     font-weight: bold;
     background-color: rgb(168,168,147);
 }
-.selectNav>option{
-   
+.pos{
+    position:relative;
+    left:80px;
     
- 
 }
+
+
+   
+
