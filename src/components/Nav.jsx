@@ -7,13 +7,15 @@ import { productDetails } from "../reduxtk/slices/productSlice"
 import { faCartShopping ,faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
  import './css/nav.css'
- import { useState, useEffect } from "react"
+ import { useState, useEffect,useContext } from "react"
+ import { DataContext } from "../context/DataContext"
  
-export const Nav=()=>{
+export const Nav=({relProd})=>{
   const [title, setTitle]= useState([])
   const [inputText, setInputText]= useState("")
-  const [inputFlag,setInputFlag]=useState(true)
-  const [f2, setF2]=useState(1)
+  //const [f2, setF2]=useState(1)
+  const {f,handleF}=useContext(DataContext)
+
 
  const dispatch = useDispatch()
  const navigate=useNavigate()
@@ -23,31 +25,34 @@ export const Nav=()=>{
  let cart=useSelector((state)=>state.product.cart)
  let user=useSelector((state)=>state.user.userDetail)
 
+//  const relProd=(v)=>{
+//   console.log(v)
+//  }
+
  const getFilterData=()=>{
-  console.log(inputText)
    let data= prod.filter((el)=>{
 
      return el.title.toLowerCase().includes(inputText)
    })
-   
+  
    setTitle(data)
 
  }
 
   const handleInput=(e)=>{
-   //setInputFlag(inputFlag?false:true)
       setInputText(e.target.value)
   }
   useEffect(()=>{
+     relProd(title)
     getFilterData()
-    setF2(0)
-  },[inputText])
+   // setF2(0)
+  },[inputText,title])
 
   const handleNavClick=(i)=>{
 
    let data= prod.filter((el)=>el.id==i)
    dispatch(productDetails(data[0]))
-   setF2(2)
+  // setF2(2)
    setInputText('') 
    navigate('/productDetails')
   }
@@ -188,6 +193,6 @@ const handleChange=()=>{
   </div>
 </nav>
 
-    <div className="pos" >{elem.length>7 || f2==2?'':elem}</div> 
+    <div className="pos" >{elem.length>7 || f!=0?'':elem}</div> 
     </div>
 }

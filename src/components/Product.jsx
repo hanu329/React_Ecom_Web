@@ -6,24 +6,29 @@ import { filterProduct,getProduct,addCart, removeCart } from '../reduxtk/slices/
 import './css/product.css'
 import { faStar, faTrash} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import {useState, useEffect ,useContext} from 'react'
+import { DataContext } from '../context/DataContext'
 
 export const Product =()=>{
-
+      const [flag, setFlag]=useState(0)
     let prod=useSelector((state)=>state.product.prod)
     let cart=useSelector((state)=>state.product.cart)
     let usr=useSelector((state)=>state.user.userDetail)
     let filterProd=useSelector((state)=>state.product.filteredProd)
 
-    
+    const {f,handleF}=useContext(DataContext)
+  
     const dispatch=useDispatch();
-
-console.log("")
+useEffect(()=>{
+handleF(0)
+  return ()=>{
+    handleF(1)
+   }
+},[])
   const productDetail =(item)=>{
     dispatch(productDetails(item))
   }
   const addToCart =(i)=>{ 
-    // console.log(usr.id) 
     dispatch(addCart(i))
   }
 
