@@ -24,10 +24,13 @@ const fetchData =async ()=>{
   let data = await axios.get("/api/User/GU")
   let res = await JSON.parse(data.data)
  // setDataChange(dataChange?false:true)
-  console.log(res)
+ 
  
 }
 
+const relProd1=(v)=>{
+   console.log("title1:", v)
+}
 useEffect(()=>{
 //fetchData();
 //    const fetchProduct =async ()=>{
@@ -44,7 +47,7 @@ dispatch(fetchProduct())
 //console.log(prod.productDetails)
   return (
     <>
-    <Nav />
+    <Nav relProd={relProd1} />
     <Routes>  
     <Route path='/' element={<Product />}></Route>
     <Route path='/login' element={<Login />}></Route>
