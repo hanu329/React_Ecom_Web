@@ -46,7 +46,7 @@ export const Nav=({relProd})=>{
      relProd(title)
     getFilterData()
    // setF2(0)
-  },[inputText,title])
+  },[inputText])
 
   const handleNavClick=(i)=>{
 
