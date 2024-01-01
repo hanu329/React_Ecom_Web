@@ -5,6 +5,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import './css/cart.css'
 import {faStar, faTrash} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {loadStripe} from '@stripe/stripe-js';
 
 export const Cart =()=>{
     const cart=useSelector((state)=>state.product.cart)
@@ -18,6 +19,63 @@ export const Cart =()=>{
     //   navigate('/')
     // }
  
+    const makePayment= async ()=>{
+    
+  
+const stripe = await loadStripe('pk_test_51OTQ7VSJvPvbVDI9L26RBez5dHEDVaDj4aQRuusXPy3fKC8AcjUB7DdsPYa4rjBb47y669i221p7ROFoSDDQLBa500puY8hc6v');
+
+
+    let arr=[]
+
+    for(let i in cart){
+      let s={}
+      if(cart[i]>0){
+    for(let j of prod){
+      if(j.id==i){
+s[j.id]=cart[i]
+  arr.push(j)
+      }
+    }
+      }
+    }
+   
+    let newArray=[]
+    for(let i in cart){
+      if(cart[i]>0 ){
+        console.log(i)
+          for(let j=0; j<arr.length;j++){
+            if(i==arr[j].id){
+              newArray=[...newArray,{...arr[j],"cartQuant":cart[i]}]
+            }
+           
+          }
+      }
+      }
+   
+   
+  console.log(newArray)
+   
+    const body={
+      product:newArray,
+    
+    }
+    const headers={
+      "Content-Type":"application/json"
+    }
+    const res= await fetch("http://localhost:3001/pay",{
+      method:"POST",
+     headers,
+     body:JSON.stringify(body)
+    })
+    const session = res.json()
+    const result= stripe.redirectToCheckout({
+      sessionId:session.id,
+    })
+    if(result.error){
+      console.log(result.error)
+    }
+    }
+
     const addToCart =(i)=>{  
       dispatch(addCart(i))
     }
@@ -55,7 +113,16 @@ export const Cart =()=>{
 {sts==false?<div><Navigate to={'/'} /></div> :<div>
  <br />
 
-   <div className="cartParentDiv"> <div className="cartCard">{cartitem}</div>  <div className="advert">Total Price: {totalPrice.toFixed(0)} $</div> </div>  </div> }
+   <div className="cartParentDiv"> 
+   <div className="cartCard">{cartitem}</div> 
+   
+    <div className="advert">Total Price: {totalPrice.toFixed(0)} $
+    <button onClick={makePayment} className='addCartBtn'  > Buy Now</button>
+     
+    </div> 
+    
+          
+    </div>  </div> }
 
 
     </div>
